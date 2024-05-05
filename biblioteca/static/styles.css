@@ -27,6 +27,45 @@ a:hover {
     text-decoration: underline;
 }
 
+.navbar {
+    background-color: #333;
+    padding: 10px;
+    position: fixed; /* Set the navbar position to fixed */
+    width: 100%; /* Make the navbar span the full width of the viewport */
+    top: 0; /* Position the navbar at the top of the viewport */
+    z-index: 1000; /* Ensure the navbar appears above other content */
+  }
+  
+  .navbar-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-item {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .navbar-link {
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* Icon Styles */
+  .navbar-link i {
+    margin-right: 5px; /* Adjust spacing between icon and text */
+  }
+
+  .navbar-link:hover {
+    color: #ffd700; /* Change color on hover */
+    text-decoration: underline; /* Underline text on hover */
+  }
+  
+  
+  .content {
+    margin-top: 50px; 
+  }
 
 .biblioteca-list {
     list-style: none;

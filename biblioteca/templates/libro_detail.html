@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ libro.titulo }}</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
-</head>
-<body>
-    <div class="container">
-        <h1>{{ libro.titulo }}</h1>
-        <p><strong>Autor:</strong> {{ libro.autor }}</p>
-        <p><strong>Sinopsis:</strong> {{ libro.sinopsis }}</p>
-        <p><strong>Año de Publicación:</strong> {{ libro.anio_publicacion }}</p>
-        <p><strong>Editorial:</strong> {{ libro.editorial }}</p>
-        <p><strong>ISBN:</strong> {{ libro.isbn }}</p>
-        <p><strong>Número de Ejemplares:</strong> {{ libro.num_ejemplares }}</p>
-        <p><strong>Biblioteca:</strong> <a href="{% url 'biblioteca_detail' libro.biblioteca.pk %}">{{ libro.biblioteca }}</a></p>
-    </div>
-</body>
-</html>
+
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ libro.titulo }}</h1>
+    <p><strong>Autor:</strong> {{ libro.autor }}</p>
+    <p><strong>Sinopsis:</strong> {{ libro.sinopsis }}</p>
+    <p><strong>Año de Publicación:</strong> {{ libro.anio_publicacion }}</p>
+    <p><strong>Editorial:</strong> {{ libro.editorial }}</p>
+    <p><strong>ISBN:</strong> {{ libro.isbn }}</p>
+    <p><strong>Número de Ejemplares:</strong> {{ libro.num_ejemplares }}</p>
+    <p><strong>Biblioteca:</strong> <a href="{% url 'biblioteca_detail' libro.biblioteca.pk %}">{{ libro.biblioteca }}</a></p>
+</div>
+{% endblock %}
