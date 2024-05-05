@@ -92,3 +92,30 @@ a:hover {
 .detail-link:hover {
     color: darkblue;
 }
+
+/* Button Styles */
+.add-button,
+.delete-button,
+.edit-button {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Icon Styles */
+.add-button i,
+.delete-button i,
+.edit-button i {
+    margin-right: 5px;
+}
+
+/* Hover Styles */
+.add-button:hover,
+.delete-button:hover,
+.edit-button:hover {
+    background-color: #0056b3;
+}

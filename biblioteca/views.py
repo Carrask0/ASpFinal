@@ -211,3 +211,18 @@ def libro_detail(request, libro_id):
     libro = Libro.objects.get(pk=libro_id)
     return render(request, "libro_detail.html", {"libro": libro})
 
+def deleteLibro(request, libro_id):
+    """
+    Deletes a specific book from the database.
+
+    Parameters:
+    - request: An HttpRequest object representing the request made by the user.
+    - libro_id: An integer representing the ID of the book to delete.
+
+    Returns:
+    - An HttpResponse object indicating the result of the operation.
+    """
+    libro = Libro.objects.get(pk=libro_id)
+    libro.delete()
+    return HttpResponse("Libro eliminado")
+

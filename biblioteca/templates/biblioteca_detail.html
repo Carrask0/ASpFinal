@@ -25,8 +25,13 @@
                 <p><strong>Sinopsis:</strong> {{ libro.sinopsis }}</p>
                 <p><strong>Número de Ejemplares:</strong> {{ libro.num_ejemplares }}</p>
                 <a class="detail-link" href="{% url 'libro_detail' libro.id %}">View Details</a>
+                <button class="delete-button" onclick="deleteLibro({{libro.id}})"><i class="fas fa-trash"></i></button>
+                <button class="edit-button" onclick="editLibro({{libro.id}})"><i class="fas fa-edit"></i></button>
             </li>
         </div>
         {% endfor %}
+    </ul>
+    <button class="add-button">Add Libro</button>
 </div>
 {% endblock %}
+
