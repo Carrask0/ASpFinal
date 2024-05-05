@@ -1,0 +1,16 @@
+{% extends base.html %}
+
+{% block content %}
+<h1>Libros</h1>
+<ul class="libro-list">
+    {% for libro in libros %}
+    <li class="libro-item">
+        <h2>{{ libro.titulo }}</h2>
+        <p><strong>Autor:</strong> {{ libro.autor }}</p>
+        <p><strong>Sinopsis:</strong> {{ libro.sinopsis }}</p>
+        <p><strong>Número de Ejemplares:</strong> {{ libro.num_ejemplares }}</p>
+        <a class="detail-link" href="{% url 'libro_detail' libro.id %}">View Details</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
