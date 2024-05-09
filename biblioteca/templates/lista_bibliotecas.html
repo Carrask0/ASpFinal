@@ -2,12 +2,15 @@
 
 {% block content %}
 
+
 <div class="search-menu">
-    <form action="{% url 'buscar_biblioteca_nombre' %}" method="get">
+    <form method="post">
+        {% csrf_token %}
         <input type="text" name="nombre" placeholder="Nombre de biblioteca">
         <button type="submit">Buscar por nombre</button>
     </form>
-    <form action="{% url 'buscar_biblioteca_ciudad' %}" method="get">
+    <form method="post">
+        {% csrf_token %}
         <input type="text" name="ciudad" placeholder="Ciudad">
         <button type="submit">Buscar por ciudad</button>
     </form>

@@ -1,7 +1,16 @@
-{% extends base.html %}
+{% extends "base.html" %}
 
 {% block content %}
 <h1>Libros</h1>
+
+<div class="search-menu">
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="titulo" placeholder="Título del libro">
+        <button type="submit">Buscar por título</button>
+    </form>
+</div>
+
 <ul class="libro-list">
     {% for libro in libros %}
     <li class="libro-item">
