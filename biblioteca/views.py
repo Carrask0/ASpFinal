@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Biblioteca, Libro
 from faker import Faker
 import random
+from .forms import LibroForm
 
 
 # Create your views here.
@@ -211,7 +212,7 @@ def libro_detail(request, libro_id):
     libro = Libro.objects.get(pk=libro_id)
     return render(request, "libro_detail.html", {"libro": libro})
 
-def deleteLibro(request, libro_id):
+def delete_libro(request, libro_id):
     """
     Deletes a specific book from the database.
 
@@ -222,7 +223,62 @@ def deleteLibro(request, libro_id):
     Returns:
     - An HttpResponse object indicating the result of the operation.
     """
+    print("Deleting libro")
     libro = Libro.objects.get(pk=libro_id)
     libro.delete()
-    return HttpResponse("Libro eliminado")
+
+    # Redirect to biblioteca_detail view
+    return biblioteca_detail(request, libro.biblioteca.id)
+
+def form_edit_libro(request, libro_id):
+    """
+    Displays a form to edit a specific book or updates the book in the database.
+
+    Parameters:
+    - request: An HttpRequest object representing the request made by the user.
+    - libro_id: An integer representing the ID of the book to edit.
+
+    Returns:
+    - An HttpResponse object indicating the result of the operation.
+    """
+    libro = Libro.objects.get(pk=libro_id)
+    if request.method == 'POST':
+        # If the form is submitted
+        form = LibroForm(request.POST, instance=libro)
+        if form.is_valid():
+            form.save()  # Save the form data to update the Libro object
+            biblioteca_id = libro.biblioteca.id
+            return biblioteca_detail(request, biblioteca_id)
+    else:
+        # If it's a GET request, display the form
+        form = LibroForm(instance=libro)
+        bibliotecas = Biblioteca.objects.all()
+    return render(request, "form_libro.html", {"libro": libro, "bibliotecas": bibliotecas})
+
+def form_create_libro(request):
+    """
+    Displays a form to create a new book or creates a new book in the database.
+
+    Parameters:
+    - request: An HttpRequest object representing the request made by the user.
+
+    Returns:
+    - An HttpResponse object indicating the result of the operation.
+    """
+    if request.method == 'POST':
+        # If the form is submitted
+        form = LibroForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the form data to create a new Libro object
+            return lista_libros(request)
+    else:
+        # If it's a GET request, display the form
+        form = LibroForm()
+        bibliotecas = Biblioteca.objects.all()
+    return render(request, "form_libro.html", {"bibliotecas": bibliotecas})
+
+        
+
+
+    
 

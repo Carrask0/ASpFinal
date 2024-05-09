@@ -5,6 +5,18 @@ body {
     background-color: #f0f0f0;
 }
 
+
+.new-delete-button {
+    background-image: url('../media/delete.png');
+    background-size: 20px 20px;
+}
+
+.new-edit-button {
+    background-image: url('../media/edit.png');
+    background-size: 20px 20px;
+}
+
+
 .container {
     max-width: 800px;
     margin: 50px auto;
@@ -106,12 +118,6 @@ a:hover {
     border-radius: 5px;
 }
 
-/* Icon Styles */
-.add-button i,
-.delete-button i,
-.edit-button i {
-    margin-right: 5px;
-}
 
 /* Hover Styles */
 .add-button:hover,
@@ -119,3 +125,11 @@ a:hover {
 .edit-button:hover {
     background-color: #0056b3;
 }
+
+
+.button-card {
+    background-color: aqua;
+    border-radius: 3px;
+}
+
+

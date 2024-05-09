@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo" value="{{ libro.titulo|default_if_none:'' }}" required><br>
+
+    <label for="autor">Autor:</label>
+    <input type="text" id="autor" name="autor" value="{{ libro.autor|default_if_none:'' }}" required><br>
+
+    <label for="sinopsis">Sinopsis:</label>
+    <textarea id="sinopsis" name="sinopsis" required>{{ libro.sinopsis|default_if_none:'' }}</textarea><br>
+
+    <label for="anio_publicacion">Año de Publicación:</label>
+    <input type="date" id="anio_publicacion" name="anio_publicacion" value="{{ libro.anio_publicacion|default_if_none:''|date:'Y-m-d' }}" required><br>
+
+    <label for="editorial">Editorial:</label>
+    <input type="text" id="editorial" name="editorial" value="{{ libro.editorial|default_if_none:'' }}" required><br>
+
+    <label for="isbn">ISBN:</label>
+    <input type="text" id="isbn" name="isbn" value="{{ libro.isbn|default_if_none:'' }}" required pattern="\d{1,9}-\d{1,9}-\d{1,9}-\d{1,9}-\d{1,9}"    title="Formato: <digit>-<digit>-<digit>-<digit>-<digit>"><br>
+
+    <label for="num_ejemplares">Número de Ejemplares:</label>
+    <input type="number" id="num_ejemplares" name="num_ejemplares" value="{{ libro.num_ejemplares|default_if_none:'' }}" required><br>
+
+    <label for="biblioteca">Biblioteca:</label>
+    <select id="biblioteca" name="biblioteca" required>
+        {% for biblioteca in bibliotecas %}
+            <option value="{{ biblioteca.id|default_if_none:'' }}" {% if libro and libro.biblioteca.id == biblioteca.id %} selected {% endif %}>{{ biblioteca.nombre }}</option>
+        {% endfor %}
+    </select><br>
+
+    <button type="submit">{% if libro %}Editar{% else %}Crear{% endif %} Libro</button>
+</form>
+{% endblock %}

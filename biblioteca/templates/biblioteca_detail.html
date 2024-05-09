@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
 <div>
     <h1>{{ biblioteca.nombre }}</h1>
@@ -24,9 +26,15 @@
                 <p><strong>Autor:</strong> {{ libro.autor }}</p>
                 <p><strong>Sinopsis:</strong> {{ libro.sinopsis }}</p>
                 <p><strong>Número de Ejemplares:</strong> {{ libro.num_ejemplares }}</p>
-                <a class="detail-link" href="{% url 'libro_detail' libro.id %}">View Details</a>
-                <button class="delete-button" onclick="deleteLibro({{libro.id}})"><i class="fas fa-trash"></i></button>
-                <button class="edit-button" onclick="editLibro({{libro.id}})"><i class="fas fa-edit"></i></button>
+                <div>
+                    <a class="detail-link" href="{% url 'libro_detail' libro.id %}">View Details</a>
+                    <a href="{% url 'delete_libro' libro.id %}" class="button-card">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    <a href="{% url 'form_edit_libro' libro.id %}" class="button-card">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </div>
             </li>
         </div>
         {% endfor %}
