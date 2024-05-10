@@ -1,28 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Libros</h1>
-
-<div class="search-menu">
-    <form method="post">
-        {% csrf_token %}
-        <input type="text" name="titulo" placeholder="Título del libro">
-        <button type="submit">Buscar por título</button>
-    </form>
-    {% if titulo %}
-        <p>Mostrando libros filtrados por: Título: {{ titulo }}</p>
-    {% endif %}
+<div class="lista-libros-header">
+    <h1>Libros</h1>
+    <a href="{% url 'form_create_libro' %}" class="lista-libros-create-button">
+        <i class="fas fa-plus"></i> 
+    </a>
 </div>
 
-<ul class="libro-list">
+<ul class="lista-libros-libro-list">
     {% for libro in libros %}
-    <li class="libro-item">
-        <h2>{{ libro.titulo }}</h2>
-        <p><strong>Autor:</strong> {{ libro.autor }}</p>
-        <p><strong>Sinopsis:</strong> {{ libro.sinopsis }}</p>
-        <p><strong>Número de Ejemplares:</strong> {{ libro.num_ejemplares }}</p>
-        <a class="detail-link" href="{% url 'libro_detail' libro.id %}">View Details</a>
+    <li class="lista-libros-libro-item">
+        <div class="lista-libros-libro-content">
+            <h2 class="lista-libros-libro-title">{{ libro.titulo }}</h2>
+            <div class="lista-libros-button-container">
+                <a href="{% url 'delete_libro' libro.id %}" class="lista-libros-button-delete">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+                <a href="{% url 'form_edit_libro' libro.id %}" class="lista-libros-button-edit">
+                    <i class="fas fa-edit"></i>
+                </a>
+            </div>
+        </div>
+        <p class="lista-libros-libro-info"><strong>Autor:</strong> {{ libro.autor }}</p>
+        <p class="lista-libros-libro-info"><strong>Sinopsis:</strong> {{ libro.sinopsis }}</p>
+        <p class="lista-libros-libro-info"><strong>Número de Ejemplares:</strong> {{ libro.num_ejemplares }}</p>
+        <a href="{% url 'libro_detail' libro.id %}" class="lista-libros-detail-link">View Details</a>
     </li>
     {% endfor %}
 </ul>
+
 {% endblock %}

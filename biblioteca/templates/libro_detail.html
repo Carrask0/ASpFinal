@@ -3,14 +3,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <h1>{{ libro.titulo }}</h1>
-    <p><strong>Autor:</strong> {{ libro.autor }}</p>
-    <p><strong>Sinopsis:</strong> {{ libro.sinopsis }}</p>
-    <p><strong>Año de Publicación:</strong> {{ libro.anio_publicacion }}</p>
-    <p><strong>Editorial:</strong> {{ libro.editorial }}</p>
-    <p><strong>ISBN:</strong> {{ libro.isbn }}</p>
-    <p><strong>Número de Ejemplares:</strong> {{ libro.num_ejemplares }}</p>
-    <p><strong>Biblioteca:</strong> <a href="{% url 'biblioteca_detail' libro.biblioteca.pk %}">{{ libro.biblioteca }}</a></p>
+<div class="libro-detail-container">
+    <h1 class="libro-detail-title">{{ libro.titulo }}</h1>
+    <p class="libro-detail-info"><strong>Autor:</strong> {{ libro.autor }}</p>
+    <p class="libro-detail-info"><strong>Sinopsis:</strong> {{ libro.sinopsis }}</p>
+    <p class="libro-detail-info"><strong>Año de Publicación:</strong> {{ libro.anio_publicacion }}</p>
+    <p class="libro-detail-info"><strong>Editorial:</strong> {{ libro.editorial }}</p>
+    <p class="libro-detail-info"><strong>ISBN:</strong> {{ libro.isbn }}</p>
+    <p class="libro-detail-info"><strong>Número de Ejemplares:</strong> {{ libro.num_ejemplares }}</p>
+    <p class="libro-detail-info"><strong>Biblioteca:</strong> <a href="{% url 'biblioteca_detail' libro.biblioteca.pk %}" class="libro-detail-biblioteca-link">{{ libro.biblioteca }}</a></p>
 </div>
+
 {% endblock %}
