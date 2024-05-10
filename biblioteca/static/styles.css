@@ -5,18 +5,6 @@ body {
     background-color: #f0f0f0;
 }
 
-
-.new-delete-button {
-    background-image: url('../media/delete.png');
-    background-size: 20px 20px;
-}
-
-.new-edit-button {
-    background-image: url('../media/edit.png');
-    background-size: 20px 20px;
-}
-
-
 .container {
     max-width: 800px;
     margin: 50px auto;
@@ -26,110 +14,48 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    color: #333;
-}
 
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
+/* NAVBAR */
 .navbar {
-    background-color: #333;
-    padding: 10px;
-    position: fixed; /* Set the navbar position to fixed */
-    width: 100%; /* Make the navbar span the full width of the viewport */
-    top: 0; /* Position the navbar at the top of the viewport */
-    z-index: 1000; /* Ensure the navbar appears above other content */
-  }
+  background-color: #333; /* Background color for the navbar */
+  color: white; /* Text color */
+  padding: 10px; /* Padding for the navbar */
+  position: fixed; /* Fixed positioning */
+  top: 0; /* Position at the top of the viewport */
+  left: 0; /* Align to the left of the viewport */
+  width: 100%; /* Full width */
+}
+
+.navbar-menu {
+  list-style-type: none; /* Remove default list styles */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+.navbar-item {
+  display: inline-block; /* Display items inline */
+  margin-right: 20px; /* Add right margin between items */
+}
+
+.navbar-item a {
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Inherit text color */
+}
+
+.navbar-item i {
+  margin-right: 5px; /* Add right margin to icons */
+}
+
+.navbar-item a:hover {
+  color: orange; /* Change text color on hover */
+}
+
+
+/* LISTA BIBLIOTECAS */
+
+
   
-  .navbar-menu {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar-item {
-    display: inline-block;
-    margin-right: 20px;
-  }
-  
-  .navbar-link {
-    color: white;
-    text-decoration: none;
-  }
-  
-  /* Icon Styles */
-  .navbar-link i {
-    margin-right: 5px; /* Adjust spacing between icon and text */
-  }
-
-  .navbar-link:hover {
-    color: #ffd700; /* Change color on hover */
-    text-decoration: underline; /* Underline text on hover */
-  }
   
   
-  .content {
-    margin-top: 50px; 
-  }
-
-.biblioteca-list {
-    list-style: none;
-    padding: 0;
-}
-.biblioteca-item {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-.biblioteca-item h2 {
-    margin-top: 0;
-}
-.biblioteca-item p {
-    margin-top: 5px;
-    margin-bottom: 0;
-}
-.detail-link {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
-}
-.detail-link:hover {
-    color: darkblue;
-}
-
-/* Button Styles */
-.add-button,
-.delete-button,
-.edit-button {
-    border: none;
-    background-color: #007bff;
-    color: white;
-    padding: 8px 16px;
-    margin: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-
-/* Hover Styles */
-.add-button:hover,
-.delete-button:hover,
-.edit-button:hover {
-    background-color: #0056b3;
-}
-
-
-.button-card {
-    background-color: aqua;
-    border-radius: 3px;
-}
 
 

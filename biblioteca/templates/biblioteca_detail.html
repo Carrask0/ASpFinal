@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 
-{% load static %}
-
 {% block content %}
 
 <h1>{{ biblioteca.nombre }}</h1>
@@ -25,9 +23,17 @@
     </form>
 </div>
 
-<h2>Libros en la biblioteca</h2>
+{% if titulo or autor or editorial %}
+    <p>Mostrando libros filtrados por:
+        {% if titulo %} Título: {{ titulo }} {% endif %}
+        {% if autor %} Autor: {{ autor }} {% endif %}
+        {% if editorial %} Editorial: {{ editorial }} {% endif %}
+    </p>
+{% endif %}
+
+<h2>Libros</h2>
 <ul class="libro-list">
-    {% for libro in biblioteca.libro_set.all %}
+    {% for libro in libros %}
     <div class="container">
         <li class="libro-item
             {% if libro.num_ejemplares == 0 %}
@@ -53,4 +59,3 @@
 <button class="add-button">Add Libro</button>
 
 {% endblock %}
-

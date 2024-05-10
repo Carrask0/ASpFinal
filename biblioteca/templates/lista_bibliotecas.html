@@ -1,22 +1,35 @@
 {% extends "base.html" %}
 
-{% block content %}
 
+
+{% block content %}
 
 <div class="search-menu">
     <form method="post">
         {% csrf_token %}
         <input type="text" name="nombre" placeholder="Nombre de biblioteca">
-        <button type="submit">Buscar por nombre</button>
-    </form>
-    <form method="post">
-        {% csrf_token %}
         <input type="text" name="ciudad" placeholder="Ciudad">
-        <button type="submit">Buscar por ciudad</button>
+        <button type="submit">Buscar</button>
     </form>
+    {% if nombre or ciudad %}
+        <p>Mostrando bibliotecas filtradas por: 
+            {% if nombre %}
+                Nombre: {{ nombre }}
+            {% endif %}
+            {% if ciudad %}
+                Ciudad: {{ ciudad }}
+            {% endif %}
+        </p>
+    {% endif %}
 </div>
 
 <h1>Listado de bibliotecas</h1>
+
+<!-- Create Biblioteca Button -->
+<a href="{% url 'form_create_biblioteca' %}" class="create-button">
+    <i class="fas fa-plus"></i> 
+</a>
+
 <ul class="biblioteca-list">
     {% for biblioteca in bibliotecas %}
     <li class="biblioteca-item">
@@ -24,7 +37,18 @@
         <p><strong>Dirección:</strong> {{ biblioteca.direccion }}</p>
         <p><strong>Ciudad:</strong> {{ biblioteca.ciudad }}</p>
         <a class="detail-link" href="{% url 'biblioteca_detail' biblioteca.id %}">View Details</a>
+
+        <!-- Edit and Delete Buttons -->
+        <div>
+            <a href="{% url 'delete_biblioteca' biblioteca.id %}" class="button-card">
+                <i class="fas fa-trash-alt"></i>
+            </a>
+            <a href="{% url 'form_edit_biblioteca' biblioteca.id %}" class="button-card">
+                <i class="fas fa-edit"></i>
+            </a>
+        </div>
     </li>
     {% endfor %}
 </ul>
 {% endblock %}
+

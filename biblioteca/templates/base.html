@@ -17,14 +17,13 @@
 
   <nav class="navbar">
     <ul class="navbar-menu">
-      <li class="navbar-item"><a href="javascript:history.back()" class="navbar-link"><i class="fas fa-arrow-left"></i></a></li>
-      <li class="navbar-item"><a href="{% url 'bibliotecas' %}" class="navbar-link"><i class="fas fa-home"></i></a></li>
-      <a href="{% url 'bibliotecas' %}" class="navbar-brand">Bibliotecas</a>
-      <a href="{% url 'libros' %}" class="navbar-brand">Libros</a>
+      <li class="navbar-item"><a href="javascript:history.back()" ><i class="fas fa-arrow-left"></i></a></li>
+      <li class="navbar-item"><a href="{% url 'bibliotecas' %}"><i class="fas fa-home"></i></a></li>
+      <li class="navbar-item"><a href="{% url 'libros' %}"><i class="fas fa-book"></i></a></li>
     </ul>
   </nav>
 
-  <div class="content">
+  <div>
     {% block content %}{% endblock %}
   </div>
 </body>

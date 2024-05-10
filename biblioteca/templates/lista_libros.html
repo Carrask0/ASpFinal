@@ -9,6 +9,9 @@
         <input type="text" name="titulo" placeholder="Título del libro">
         <button type="submit">Buscar por título</button>
     </form>
+    {% if titulo %}
+        <p>Mostrando libros filtrados por: Título: {{ titulo }}</p>
+    {% endif %}
 </div>
 
 <ul class="libro-list">
