@@ -1,32 +1,70 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
-    <h1>{{ biblioteca.nombre }}</h1>
-    <p><strong>Dirección:</strong> {{ biblioteca.direccion }}</p>
-    <p><strong>Ciudad:</strong> {{ biblioteca.ciudad }}</p>
-    <p><strong>Horario de Apertura:</strong> {{ biblioteca.horario_apertura }}</p>
-    <p><strong>Horario de Cierre:</strong> {{ biblioteca.horario_cierre }}</p>
-    <p><strong>Fecha de Fundación:</strong> {{ biblioteca.fecha_fundacion }}</p>
-    {% if biblioteca.normas %}
-        <p><strong>Normas:</strong> <a href="{{ biblioteca.normas.url }}">{{ biblioteca.normas.name }}</a></p>
-    {% endif %}
+<h1 class="biblioteca-detail-title">{{ biblioteca.nombre }}</h1>
 
-    <h2>Libros en la biblioteca</h2>
-    <ul class="libro-list">
-        {% for libro in biblioteca.libro_set.all %}
-        <div class="container">
-            <li class="libro-item
-                {% if libro.num_ejemplares == 0 %}
-                    libro-item--no-stock
-                {% endif %}">
-                <h3>{{ libro.titulo }}</h3>
-                <p><strong>Autor:</strong> {{ libro.autor }}</p>
-                <p><strong>Sinopsis:</strong> {{ libro.sinopsis }}</p>
-                <p><strong>Número de Ejemplares:</strong> {{ libro.num_ejemplares }}</p>
-                <a class="detail-link" href="{% url 'libro_detail' libro.id %}">View Details</a>
-            </li>
-        </div>
-        {% endfor %}
+<p class="biblioteca-detail-info"><strong>Dirección:</strong> {{ biblioteca.direccion }}</p>
+<p class="biblioteca-detail-info"><strong>Ciudad:</strong> {{ biblioteca.ciudad }}</p>
+<p class="biblioteca-detail-info"><strong>Horario de Apertura:</strong> {{ biblioteca.horario_apertura }}</p>
+<p class="biblioteca-detail-info"><strong>Horario de Cierre:</strong> {{ biblioteca.horario_cierre }}</p>
+<p class="biblioteca-detail-info"><strong>Fecha de Fundación:</strong> {{ biblioteca.fecha_fundacion }}</p>
+{% if biblioteca.normas %}
+    <p class="biblioteca-detail-info"><strong>Normas:</strong> <a href="{{ biblioteca.normas.url }}" class="biblioteca-detail-normas-link">{{ biblioteca.normas.name }}</a></p>
+{% endif %}
+
+</br>
+
+<h2 class="biblioteca-detail-libros-header">Buscar Libros en la biblioteca</h2>
+<div class="biblioteca-detail-search-menu">
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="titulo" placeholder="Título del libro" class="biblioteca-detail-search-input">
+        <input type="text" name="autor" placeholder="Autor del libro" class="biblioteca-detail-search-input">
+        <input type="text" name="editorial" placeholder="Editorial del libro" class="biblioteca-detail-search-input">
+        <button type="submit" class="biblioteca-detail-search-button">Buscar</button>
+    </form>
 </div>
+
+{% if titulo or autor or editorial %}
+    <p class="biblioteca-detail-filter-message">Mostrando libros filtrados por:
+        {% if titulo %} Título: {{ titulo }} {% endif %}
+        {% if autor %} Autor: {{ autor }} {% endif %}
+        {% if editorial %} Editorial: {{ editorial }} {% endif %}
+    </p>
+{% endif %}
+
+</br>
+
+<div class="biblioteca-detail-libros-header">
+    <h2 class="biblioteca-detail-libros-title">Libros</h2>
+    <a href="{% url 'form_create_libro' %}" class="biblioteca-detail-create-button">
+        <i class="fas fa-plus"></i> 
+    </a>
+</div>
+
+<ul class="biblioteca-detail-libros-list">
+    {% for libro in libros %}
+    <li class="biblioteca-detail-libro-item">
+        <div class="biblioteca-detail-libro-item-content">
+
+            <h3 class="biblioteca-detail-libro-title">{{ libro.titulo }}</h3>
+            <div class="biblioteca-detail-libro-actions">
+                <a href="{% url 'delete_libro' libro.id %}" class="biblioteca-detail-delete-button">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+                <a href="{% url 'form_edit_libro' libro.id %}" class="biblioteca-detail-edit-button">
+                    <i class="fas fa-edit"></i>
+                </a>
+            </div>
+           
+        </div>
+        <p class="biblioteca-detail-libro-info"><strong>Autor:</strong> {{ libro.autor }}</p>
+        <p class="biblioteca-detail-libro-info"><strong>Sinopsis:</strong> {{ libro.sinopsis }}</p>
+        <p class="biblioteca-detail-libro-info"><strong>Número de Ejemplares:</strong> {{ libro.num_ejemplares }}</p>
+        <a href="{% url 'libro_detail' libro.id %}" class="biblioteca-detail-libro-info">View Details</a>
+    </li>
+    {% endfor %}
+</ul>
+
+
 {% endblock %}

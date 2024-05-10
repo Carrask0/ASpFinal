@@ -1,15 +1,60 @@
 {% extends "base.html" %}
 
+
+
 {% block content %}
-<h1>Listado de bibliotecas</h1>
-<ul class="biblioteca-list">
+
+<div class="lista-bibliotecas-header">
+    <h1>Bibliotecas</h1>
+    <a href="{% url 'form_create_biblioteca' %}" class="lista-bibliotecas-create-button">
+        <i class="fas fa-plus"></i> 
+    </a>
+</div>
+
+
+<div class="lista-bibliotecas-search-container">
+    <form method="post" class="lista-bibliotecas-search-form">
+        {% csrf_token %}
+        <input type="text" name="nombre" placeholder="Nombre de biblioteca" class="lista-bibliotecas-search-input">
+        <input type="text" name="ciudad" placeholder="Ciudad" class="lista-bibliotecas-search-input">
+        <button type="submit" class="lista-bibliotecas-search-button">Buscar</button>
+    </form>
+    {% if nombre or ciudad %}
+        <p class="lista-bibliotecas-filter-message">Mostrando bibliotecas filtradas por: 
+            {% if nombre %}
+                Nombre: {{ nombre }}
+            {% endif %}
+            {% if ciudad %}
+                Ciudad: {{ ciudad }}
+            {% endif %}
+        </p>
+    {% endif %}
+</div>
+
+</div>
+
+
+<ul class="lista-bibliotecas-biblioteca-list">
     {% for biblioteca in bibliotecas %}
-    <li class="biblioteca-item">
-        <h2>{{ biblioteca.nombre }}</h2>
-        <p><strong>Dirección:</strong> {{ biblioteca.direccion }}</p>
-        <p><strong>Ciudad:</strong> {{ biblioteca.ciudad }}</p>
-        <a class="detail-link" href="{% url 'biblioteca_detail' biblioteca.id %}">View Details</a>
+    <li class="lista-bibliotecas-biblioteca-item">
+        <div class="lista-bibliotecas-biblioteca-content">
+            <h2 class="lista-bibliotecas-biblioteca-name">{{ biblioteca.nombre }}</h2>
+            <div class="lista-bibliotecas-button-container">
+                <a href="{% url 'delete_biblioteca' biblioteca.id %}" class="lista-bibliotecas-button-delete">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+                <a href="{% url 'form_edit_biblioteca' biblioteca.id %}" class="lista-bibliotecas-button-edit">
+                    <i class="fas fa-edit"></i>
+                </a>
+            </div>
+        </div>
+        <p class="lista-bibliotecas-biblioteca-info"><strong>Dirección:</strong> {{ biblioteca.direccion }}</p>
+        <p class="lista-bibliotecas-biblioteca-info"><strong>Ciudad:</strong> {{ biblioteca.ciudad }}</p>
+        <a href="{% url 'biblioteca_detail' biblioteca.id %}" class="lista-bibliotecas-detail-link">View Details</a>
     </li>
     {% endfor %}
 </ul>
+
+
 {% endblock %}
+

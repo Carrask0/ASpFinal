@@ -5,6 +5,12 @@ body {
     background-color: #f0f0f0;
 }
 
+.content {
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 .container {
     max-width: 800px;
     margin: 50px auto;
@@ -14,81 +20,459 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    color: #333;
-}
 
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
+/* NAVBAR */
 .navbar {
-    background-color: #333;
-    padding: 10px;
-    position: fixed; /* Set the navbar position to fixed */
-    width: 100%; /* Make the navbar span the full width of the viewport */
-    top: 0; /* Position the navbar at the top of the viewport */
-    z-index: 1000; /* Ensure the navbar appears above other content */
-  }
-  
-  .navbar-menu {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar-item {
-    display: inline-block;
-    margin-right: 20px;
-  }
-  
-  .navbar-link {
-    color: white;
-    text-decoration: none;
-  }
-  
-  /* Icon Styles */
-  .navbar-link i {
-    margin-right: 5px; /* Adjust spacing between icon and text */
-  }
+  background-color: #333; /* Background color for the navbar */
+  color: white; /* Text color */
+  padding: 10px; /* Padding for the navbar */
+  position: fixed; /* Fixed positioning */
+  top: 0; /* Position at the top of the viewport */
+  left: 0; /* Align to the left of the viewport */
+  width: 100%; /* Full width */
+}
 
-  .navbar-link:hover {
-    color: #ffd700; /* Change color on hover */
-    text-decoration: underline; /* Underline text on hover */
-  }
-  
-  
-  .content {
-    margin-top: 50px; 
-  }
+.navbar-menu {
+  list-style-type: none; /* Remove default list styles */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
 
-.biblioteca-list {
-    list-style: none;
-    padding: 0;
+.navbar-item {
+  display: inline-block; /* Display items inline */
+  margin-right: 20px; /* Add right margin between items */
 }
-.biblioteca-item {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
+
+.navbar-item a {
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Inherit text color */
 }
-.biblioteca-item h2 {
-    margin-top: 0;
+
+.navbar-item i {
+  margin-right: 5px; /* Add right margin to icons */
 }
-.biblioteca-item p {
-    margin-top: 5px;
-    margin-bottom: 0;
+
+.navbar-item a:hover {
+  color: orange; /* Change text color on hover */
 }
-.detail-link {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
+
+
+/* LISTA BIBLIOTECAS */
+
+/* Lista bibliotecas header*/
+.lista-bibliotecas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
-.detail-link:hover {
-    color: darkblue;
+
+.lista-bibliotecas-header h1 {
+  margin: 0;
 }
+
+.lista-bibliotecas-create-button {
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.lista-bibliotecas-create-button:hover {
+  background-color: #0056b3;
+}
+
+/* Search Container */
+.lista-bibliotecas-search-container {
+  margin-bottom: 20px; /* Add margin at the bottom */
+}
+
+/* Search Form */
+.lista-bibliotecas-search-form {
+  display: flex; /* Use flexbox for layout */
+  margin-bottom: 10px; /* Add margin at the bottom */
+}
+
+/* Search Input */
+.lista-bibliotecas-search-input {
+  flex: 1; /* Allow inputs to grow to fill available space */
+  margin-right: 10px; /* Add margin to the right of inputs */
+}
+
+/* Search Button */
+.lista-bibliotecas-search-button {
+  background-color: #007bff; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Remove border */
+  padding: 8px 16px; /* Add padding */
+  cursor: pointer; /* Change cursor on hover */
+}
+
+/* Search Button Hover */
+.lista-bibliotecas-search-button:hover {
+  background-color: #0056b3; /* Change background color on hover */
+}
+
+/* Filter Message */
+.lista-bibliotecas-filter-message {
+  font-style: italic; /* Italicize the message */
+  margin-bottom: 10px; /* Add margin at the bottom */
+}
+
+/* Biblioteca List */
+.lista-bibliotecas-biblioteca-list {
+  list-style-type: none; /* Remove default list style */
+  padding: 0; /* Remove default padding */
+}
+
+.lista-bibliotecas-biblioteca-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.lista-bibliotecas-biblioteca-content {
+  display: flex;
+  align-items: center;
+}
+
+.lista-bibliotecas-biblioteca-name {
+  margin: 0;
+}
+
+.lista-bibliotecas-button-container {
+  margin-left: auto;
+}
+
+.lista-bibliotecas-button-delete,
+.lista-bibliotecas-button-edit {
+  color: #007bff;
+  margin-left: 10px;
+}
+
+.lista-bibliotecas-button-delete:hover,
+.lista-bibliotecas-button-edit:hover {
+  color: #0056b3;
+}
+
+.lista-bibliotecas-info {
+  font-style: italic;
+  color: #666;
+}
+
+
+
+/* LISTA LIBRO */
+.lista-libros-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.lista-libros-create-button {
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.lista-libros-create-button:hover {
+  background-color: #0056b3;
+}
+
+.lista-libros-libro-list {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-libros-libro-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.lista-libros-libro-content {
+  display: flex;
+  align-items: center;
+}
+
+.lista-libros-libro-title {
+  margin: 0;
+}
+
+.lista-libros-button-container {
+  margin-left: auto;
+}
+
+.lista-libros-button-delete,
+.lista-libros-button-edit {
+  color: #007bff;
+  margin-left: 10px;
+}
+
+.lista-libros-button-delete:hover,
+.lista-libros-button-edit:hover {
+  color: #0056b3;
+}
+
+.lista-libros-libro-info {
+  margin: 5px 0;
+}
+
+.lista-libros-detail-link {
+  color: #007bff;
+}
+
+.lista-libros-detail-link:hover {
+  color: #0056b3;
+}
+
+
+/* LIBRO DETAIL */
+.libro-detail-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.libro-detail-title {
+  margin-top: 0;
+}
+
+.libro-detail-info {
+  margin-bottom: 10px;
+}
+
+.libro-detail-biblioteca-link {
+  color: #007bff;
+}
+
+.libro-detail-biblioteca-link:hover {
+  color: #0056b3;
+}
+
+/* BIBLIOTECA DETAIL */
+.biblioteca-detail-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.biblioteca-detail-info {
+  margin-bottom: 5px;
+}
+
+.biblioteca-detail-normas-link {
+  color: blue;
+}
+
+.biblioteca-detail-libros-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.biblioteca-detail-search-menu {
+  margin-bottom: 20px;
+}
+
+.biblioteca-detail-search-input {
+  width: 150px;
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.biblioteca-detail-search-button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.biblioteca-detail-search-button:hover {
+  background-color: #0056b3;
+}
+
+.biblioteca-detail-filter-message {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.biblioteca-detail-libros-title {
+  font-size: 20px;
+}
+
+.biblioteca-detail-create-button {
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.biblioteca-detail-create-button:hover {
+  background-color: #0056b3;
+}
+
+.biblioteca-detail-libros-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.biblioteca-detail-libro-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.biblioteca-detail-libro-item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.biblioteca-detail-libro-title {
+  font-size: 18px;
+}
+
+.biblioteca-detail-libro-actions {
+  display: flex;
+  align-items: center;
+}
+
+.biblioteca-detail-edit-button,
+.biblioteca-detail-delete-button {
+  color: #007bff;
+  margin-left: 10px;
+}
+
+.biblioteca-detail-edit-button:hover,
+.biblioteca-detail-delete-button:hover {
+  color: #0056b3;
+}
+
+.biblioteca-detail-libro-info {
+  margin-bottom: 5px;
+}
+
+.biblioteca-detail-libro-info a {
+  color: blue;
+  text-decoration: none;
+}
+
+.biblioteca-detail-libro-info a:hover {
+  text-decoration: underline;
+}
+
+
+/* FORM LIBRO */
+.form-libro {
+  margin-bottom: 20px;
+}
+
+.form-libro-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-libro-input,
+.form-libro-textarea,
+.form-libro-select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.form-libro-submit {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-libro-submit:hover {
+  background-color: #0056b3;
+}
+
+
+/* FORM BIBLIOTECA */
+.form-biblioteca {
+  margin-bottom: 20px;
+}
+
+.form-biblioteca p {
+  margin-bottom: 10px;
+}
+
+.form-biblioteca label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-biblioteca input[type="text"],
+.form-biblioteca input[type="date"],
+.form-biblioteca select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.form-biblioteca textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.form-biblioteca-submit {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-biblioteca-submit:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+
+
+  
+  
+  
+
+

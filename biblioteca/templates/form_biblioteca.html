@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<form method="post" class="form-biblioteca">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="form-biblioteca-submit">{% if biblioteca %}Editar{% else %}Crear{% endif %} Biblioteca</button>
+</form>
+
+{% endblock %}
