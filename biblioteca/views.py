@@ -7,10 +7,19 @@ import random
 from .forms import LibroForm, BibliotecaForm
 from .models import Biblioteca, Libro
 
+from .service import RepositoryService
+
+repository = RepositoryService()
+
 
 
 # Create your views here.
 def index(request):
+
+    #Delete all data from the database
+    Libro.objects.all().delete()
+    Biblioteca.objects.all().delete()
+
     #INPUT MOCK DATA
     fake = Faker()
     if Biblioteca.objects.all().count() == 0:
@@ -59,7 +68,8 @@ def lista_bibliotecas(request):
     - An HttpResponse object representing the rendered HTML page displaying all libraries.
     """
     # Retrieve all libraries by default
-    bibliotecas = Biblioteca.objects.all()
+    #bibliotecas = Biblioteca.objects.all()
+    bibliotecas = repository.get_bibliotecas()
 
     # Initialize nombre and ciudad to None
     nombre = None
@@ -92,7 +102,7 @@ def lista_libros(request):
     Returns:
     - An HttpResponse object representing the rendered HTML page displaying all books.
     """
-    libros = Libro.objects.all()
+    libros = repository.get_libros()
 
     # Initialize titulo to None
     titulo = None
@@ -101,7 +111,8 @@ def lista_libros(request):
     if request.method == 'POST' and 'titulo' in request.POST:
         titulo = request.POST['titulo']
         # Filter libros by titulo
-        libros = Libro.objects.filter(titulo__icontains=titulo)
+        libros = libros.filter(titulo__icontains=titulo)
+
 
     return render(request, "lista_libros.html", {"libros": libros, "titulo": titulo})
 
@@ -119,7 +130,7 @@ def biblioteca_detail(request, biblioteca_id):
     - An HttpResponse object representing the rendered HTML page displaying the details of the specified library and the books it contains.
     """
     # Retrieve the biblioteca object by its ID or return a 404 error if it doesn't exist
-    biblioteca = get_object_or_404(Biblioteca, pk=biblioteca_id)
+    biblioteca = repository.get_biblioteca(biblioteca_id)
 
     # Retrieve all libros associated with the biblioteca
     libros = biblioteca.libro_set.all()
@@ -154,7 +165,7 @@ def libro_detail(request, libro_id):
     Returns:
     - An HttpResponse object representing the rendered HTML page displaying the details of the specified book.
     """
-    libro = Libro.objects.get(pk=libro_id)
+    libro = repository.get_libro(libro_id)
     return render(request, "libro_detail.html", {"libro": libro})
 
 def delete_libro(request, libro_id):
@@ -168,8 +179,9 @@ def delete_libro(request, libro_id):
     Returns:
     - An HttpResponse object indicating the result of the operation.
     """
-    libro = Libro.objects.get(pk=libro_id)
+    libro = repository.get_libro(libro_id)
     libro.delete()
+
 
     # Redirect to biblioteca_detail view
     return HttpResponseRedirect("/bibliotecas/" + str(libro.biblioteca.id) + "/")
@@ -185,7 +197,7 @@ def form_edit_libro(request, libro_id):
     Returns:
     - An HttpResponse object indicating the result of the operation.
     """
-    libro = Libro.objects.get(pk=libro_id)
+    libro = repository.get_libro(libro_id)
     if request.method == 'POST':
         # If the form is submitted
         form = LibroForm(request.POST, instance=libro)
@@ -196,7 +208,7 @@ def form_edit_libro(request, libro_id):
     else:
         # If it's a GET request, display the form
         form = LibroForm(instance=libro)
-        bibliotecas = Biblioteca.objects.all()
+        bibliotecas = repository.get_bibliotecas()
     return render(request, "form_libro.html", {"libro": libro, "bibliotecas": bibliotecas})
 
 def form_create_libro(request):
@@ -219,7 +231,7 @@ def form_create_libro(request):
     else:
         # If it's a GET request, display the form
         form = LibroForm()
-        bibliotecas = Biblioteca.objects.all()
+        bibliotecas = repository.get_bibliotecas()
     return render(request, "form_libro.html", {"bibliotecas": bibliotecas})
 
 
@@ -234,7 +246,7 @@ def form_create_biblioteca(request):
     return render(request, 'form_biblioteca.html', {'form': form})
 
 def form_edit_biblioteca(request, biblioteca_id):
-    biblioteca = Biblioteca.objects.get(pk=biblioteca_id)
+    biblioteca = repository.get_biblioteca(biblioteca_id)
     if request.method == 'POST':
         form = BibliotecaForm(request.POST, instance=biblioteca)
         if form.is_valid():
@@ -257,7 +269,7 @@ def delete_biblioteca(request, biblioteca_id):
     - An HttpResponse object indicating the result of the operation.
     """
     print("Deleting biblioteca")
-    biblioteca = Biblioteca.objects.get(pk=biblioteca_id)
+    biblioteca = repository.get_biblioteca(biblioteca_id)
     biblioteca.delete()
 
     # Redirect to lista_bibliotecas view
