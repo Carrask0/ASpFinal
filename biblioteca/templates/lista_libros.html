@@ -8,6 +8,21 @@
     </a>
 </div>
 
+<div class="lista-libros-search-container">
+    <form method="post" class="lista-libros-search-form">
+        {% csrf_token %}
+        <input type="text" name="nombre" placeholder="Nombre del libro" class="lista-libros-search-input">
+        <button type="submit" class="lista-libros-search-button">Buscar</button>
+    </form>
+    {% if nombre %}
+        <p class="lista-libros-filter-message">Mostrando libros filtradas por: 
+            {% if nombre %}
+                Nombre: {{ nombre }}
+            {% endif %}
+        </p>
+    {% endif %}
+</div>
+
 <ul class="lista-libros-libro-list">
     {% for libro in libros %}
     <li class="lista-libros-libro-item">

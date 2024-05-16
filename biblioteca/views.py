@@ -16,6 +16,9 @@ repository = RepositoryService()
 # Create your views here.
 def index(request):
 
+    NUM_BIBLIOTECAS = 10
+    NUM_LIBROS = 50
+
     #Delete all data from the database
     Libro.objects.all().delete()
     Biblioteca.objects.all().delete()
@@ -24,7 +27,7 @@ def index(request):
     fake = Faker()
     if Biblioteca.objects.all().count() == 0:
         # Populate Biblioteca table
-        for _ in range(10):
+        for _ in range(NUM_BIBLIOTECAS):
             nombre = fake.company()
             direccion = fake.address()
             ciudad = fake.city()
@@ -39,7 +42,7 @@ def index(request):
     if Libro.objects.all().count() == 0:
         # Populate Libro table
         bibliotecas = Biblioteca.objects.all()
-        for _ in range(50):
+        for _ in range(NUM_LIBROS):
             titulo = fake.catch_phrase()
             autor = fake.name()
             sinopsis = fake.text()

@@ -189,6 +189,37 @@ body {
   background-color: #0056b3;
 }
 
+/* Search Container */
+.lista-libros-search-container {
+  margin-bottom: 20px; /* Add margin at the bottom */
+}
+
+/* Search Form */
+.lista-libros-search-form {
+  display: flex; /* Use flexbox for layout */
+  margin-bottom: 10px; /* Add margin at the bottom */
+}
+
+/* Search Input */
+.lista-libros-search-input {
+  flex: 1; /* Allow inputs to grow to fill available space */
+  margin-right: 10px; /* Add margin to the right of inputs */
+}
+
+/* Search Button */
+.lista-libros-search-button {
+  background-color: #007bff; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Remove border */
+  padding: 8px 16px; /* Add padding */
+  cursor: pointer; /* Change cursor on hover */
+}
+
+/* Search Button Hover */
+.lista-libros-search-button:hover {
+  background-color: #0056b3; /* Change background color on hover */
+}
+
 .lista-libros-libro-list {
   list-style: none;
   padding: 0;
