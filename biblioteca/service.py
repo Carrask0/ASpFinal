@@ -6,9 +6,11 @@ class RepositoryService:
         self.libros = Libro.objects.all()
 
     def get_bibliotecas(self):
+        self.bibliotecas = Biblioteca.objects.all()
         return self.bibliotecas
     
     def get_libros(self):
+        self.libros = Libro.objects.all()
         return self.libros
     
     def get_biblioteca(self, biblioteca_id):
